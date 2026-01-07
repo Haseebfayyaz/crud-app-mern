@@ -32,3 +32,27 @@ export const getPlayerWithId = async (req, res) => {
     }
 }
 
+export const updatePlayer = async (req, res) => {
+    try {
+        const player = await Player.findByIdAndUpdate({_id: req.params.PlayerId},
+            req.body,
+            { new: true }
+        )
+
+        res.json(player)
+
+    } catch (err) {
+        res.json(err)
+    }
+}
+
+export const deletePlayer = async (req, res) => {
+    try {
+        const player = await Player.deleteOne({_id: req.params.PlayerId})
+           
+        res.json({message: "Deelted Player"})
+
+    } catch (err) {
+        res.json(err)
+    }
+}
