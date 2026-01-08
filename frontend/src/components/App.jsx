@@ -1,28 +1,14 @@
 import { Routes, Route, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from 'axios'
 
 import './App.css'
+import { PlayerProvider } from '../constext/PlayerContext'
 import PlayerForm from './Player/PlayerForm'
 import { PlayerList } from './Player/PlayerList'
 import { PlayerSingle } from './Player/PlayerSingle'
 
 
 function App(){
-  const [playerList, setPlayerList] = useState([]);
-  const [currentPlayer, setCurrentPlayer] = useState({});
-
   
-
-  const fetchPlayers = async () => {
-    const res = await axios.get("http://localhost:4000/players");
-    setPlayerList(res.data);
-  };
-
-  useEffect(() => {
-     fetchPlayers();
-
-  }, []);
 
 
   return(
@@ -38,7 +24,7 @@ function App(){
           </Link>
         </div>
       </div>
-
+    <PlayerProvider>
       <Routes>
         {/* HOME PAGE */}
         <Route
@@ -47,13 +33,12 @@ function App(){
             <div className="row">
               <div className="col s4">
                 <PlayerList
-                  players={playerList}
-                  updateCurrentPlayer={setCurrentPlayer}
+                  
                 />
               </div>
 
               <div className="col s8">
-                <PlayerSingle player={currentPlayer} />
+                <PlayerSingle />
               </div>
             </div>
           }
@@ -62,9 +47,11 @@ function App(){
         {/* ADD PLAYER PAGE */}
         <Route
           path="/add-player"
-          element={<PlayerForm onSuccess={fetchPlayers} />}
+          element={<PlayerForm />}
         />
+        <Route path="/edit/:id" element={<PlayerForm />} />
       </Routes>
+      </PlayerProvider>
     </div>
   )
 }

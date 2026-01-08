@@ -1,25 +1,40 @@
-import { useRef } from "react" 
-import { useNavigate } from "react-router-dom";
-import axios from "axios"
+import { useRef, useEffect } from "react" 
+import { useNavigate, useParams } from "react-router-dom";
+import { usePlayer } from "../../constext/usePlayer";
 
-function PlayerForm({onSuccess }) {
+function PlayerForm() {
+    const id = useParams().id;
+    const { players, addPlayer, updatePlayer } = usePlayer();
+
     const navigate = useNavigate();
     const firstName = useRef(null);
     const lastName = useRef(null);
     const email = useRef(null);
     const phone = useRef(null);
 
-    const submitPlayer = async (event) => {
+    useEffect(() => {
+        if(id){
+            const player = players.find(p => p._id = id);
+            if(player){
+                firstName.current.value = player.firstName;
+                lastName.current.value = player.lastName;
+                email.current.value = player.email;
+                phone.current.value = player.phone;
+            }
+        }
+    }, [id, players]);
+
+    const submitPlayer = (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post("http://localhost:4000/players",{
+            const data = {
                 firstName: firstName.current.value,
                 lastName: lastName.current.value,
                 email: email.current.value,
                 phone: phone.current.value,
-            })
-            onSuccess();        // refresh list
-            navigate("/"); 
+            }
+            id ? updatePlayer(id,data) : addPlayer(data);
+            navigate("/")
         } catch(err){
             console.error(err);
         }
