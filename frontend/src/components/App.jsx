@@ -1,7 +1,7 @@
 import { Routes, Route, Link } from "react-router-dom";
 
 import './App.css'
-import { PlayerProvider } from '../constext/PlayerContext'
+import { PlayerProvider } from '../context/PlayerContext'
 import PlayerForm from './Player/PlayerForm'
 import { PlayerList } from './Player/PlayerList'
 import { PlayerSingle } from './Player/PlayerSingle'

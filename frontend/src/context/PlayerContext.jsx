@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import * as playerApi from "../services/playerApi";
 
-const PlayerContext = createContext();
+export const PlayerContext = createContext(null);
 
 export const PlayerProvider = ({ children}) => {
     const [players, setPlayers] = useState([]);

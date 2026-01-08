@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react" 
 import { useNavigate, useParams } from "react-router-dom";
-import { usePlayer } from "../../constext/usePlayer";
+import { usePlayer } from "../../context/usePlayer";
 
 function PlayerForm() {
     const id = useParams().id;

@@ -1,4 +1,4 @@
-import { usePlayer } from '../../constext/usePlayer';
+import { usePlayer } from '../../context/usePlayer';
 export const PlayerList = () => {
     const { players, setCurrentPlayer } = usePlayer();
     return (

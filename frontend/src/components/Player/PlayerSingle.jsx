@@ -1,4 +1,4 @@
-import { usePlayer } from '../../constext/usePlayer';
+import { usePlayer } from '../../context/usePlayer';
 import { Link } from "react-router-dom";
 
 export const PlayerSingle = () => {
