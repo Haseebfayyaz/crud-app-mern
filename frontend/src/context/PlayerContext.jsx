@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import * as playerApi from "../services/playerApi";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const PlayerContext = createContext(null);
 
 export const PlayerProvider = ({ children}) => {
