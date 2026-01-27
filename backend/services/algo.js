@@ -67,8 +67,31 @@ class AlgoService {
         } 
 
         const result = {"asc": arr, "desc": arr2}
-
+console.log(arr[-1]);
         console.log(result);
+    }
+
+    quickSort(arr, low = 0, high = arr.length){
+        if (low < high) {
+            let pi = partition(arr, low, high);
+            quickSort(arr, low, pi - 1);
+            quickSort(arr, pi + 1, high);
+          }
+    }
+
+    partition(arr, low, high){
+        let pivot = arr[high];
+        let i = low - 1;
+
+        for (let j = low; j < high; j++) {
+            if (arr[j] < pivot) {
+                i++;
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+        }
+
+        [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
+        return i + 1;
     }
 }
 
