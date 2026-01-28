@@ -20,8 +20,9 @@ app.use(cors())
 routes(app)
 
 app.get("/", (req, res) => {
-
-    AlgoService.bubbleSort([4,9,3,7,1]);
+    const arr = [4,9,3,7,1];
+    AlgoService.quickSort(arr, 0 , arr.length - 1);
+    AlgoService.quickSortDesc(arr, 0 , arr.length - 1);
 
     res.send(`App is running on port ${PORT}`)
 })
